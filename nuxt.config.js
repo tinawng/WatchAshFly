@@ -24,6 +24,10 @@ export default {
     "@/assets/css/base.postcss"
   ],
 
+  http: {
+    baseURL: process.env.REQ_API,
+  },
+
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [],
 
@@ -65,11 +69,7 @@ export default {
           "focus-within-pseudo-class": false
         }
       }
-    },
-    // 🚨 Uncomment only if encounter layout style leaks
-    // splitChunks: {
-    //   layouts: true
-    // }
+    }
   },
 
   render: {

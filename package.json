@@ -6,7 +6,8 @@
     "dev": "nuxt",
     "generate": "nuxt generate --modern"
   },
-  "dependencies": {},
+  "dependencies": {
+  },
   "devDependencies": {
     "nuxt": "^2.15.7",
     "postcss": "^8.3.6",

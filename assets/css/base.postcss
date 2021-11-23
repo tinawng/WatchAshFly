@@ -8,5 +8,66 @@ html {
   -ms-touch-action: manipulation;
   touch-action: manipulation;
 
-  font-family: "Roboto";
+  font-family: "Suisse Intl";
+  @apply bg-white text-black tracking-wider;
+}
+body {
+  @apply relative;
+}
+body::after{
+  content: "";
+  @apply absolute top-0 left-0 z-30;
+  @apply h-full w-full;
+  background-image: url("/img/noise.png");
+  @apply opacity-50;
+  @apply pointer-events-none;
+}
+
+h1 {
+  @apply text-7xl font-bold;
+}
+
+a.button {
+  @apply h-10 w-32;
+  @apply bg-white rounded-full shadow-lg;
+  @apply text-center leading-10;
+  @apply font-bold;
+  @apply transition-all;
+  transition-property: transform shadow;
+}
+a.button:hover {
+  @apply transform -translate-y-1;
+  @apply shadow-xl;
+}
+a.button:active {
+  @apply transform translate-y-0;
+  @apply shadow;
+}
+a.button.dark {
+  @apply bg-dark text-white shadow-xl;
+}
+
+@font-face {
+  font-family: 'Suisse Intl';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local(''),
+       url('../../static/fonts/suisse-intl/SuisseIntl-Regular-WebXL.woff') format('woff2');
+}
+@font-face {
+  font-family: 'Suisse Intl';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local(''),
+       url('../../static/fonts/suisse-intl/SuisseIntl-SemiBold-WebXL.woff') format('woff2');
+}
+@font-face {
+  font-family: 'Suisse Intl';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local(''),
+       url('../../static/fonts/suisse-intl/SuisseIntl-Bold-WebXL.woff') format('woff2');
 }
