@@ -1,0 +1,17 @@
+{
+  "name": "template",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "generate": "nuxt generate --modern"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "nuxt": "^2.15.7",
+    "postcss": "^8.3.6",
+    "@nuxtjs/tailwindcss": "^4.2.1",
+    "@nuxtjs/dotenv": "^1.4.1",
+    "@nuxt/http": "^0.6.4"
+  }
+}
