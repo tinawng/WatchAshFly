@@ -46,15 +46,28 @@
         <ol>
           <li class="card__title font-bold">Burnt Cubes</li>
           <li>
-            <span class="text-2xl">3,259</span>
-            <span class="opacity-40">/ 6165</span>
+            <span class="text-2xl">{{burnt_cube}}</span>
+            <span class="opacity-40">/ {{total_cube}}</span>
           </li>
         </ol>
       </card>
     </section>
     <section class="ash_stats">
-      <div></div>
-      <div class="bg-dark"></div>
+      <card
+        class="mx-auto"
+        dark
+        video="https://media.niftygateway.com/video/upload/q_auto:good,w_800/v1618196543/Pak/ACube.mp4"
+        link="https://burn.art/"
+      >
+        <ol>
+          <li class="card__title font-bold">Burnt Cubes</li>
+          <li>
+            <span class="text-2xl">{{burnt_cube}}</span>
+            <span class="opacity-40">/ {{total_cube}}</span>
+          </li>
+        </ol>
+      </card>
+      <div class="bg-dark">a</div>
     </section>
     <section class="credits"></section>
   </div>
@@ -74,6 +87,14 @@ export default {
     this.nifty_floor = (await this.$http.$post("/", process.env.DATA_API + "/niftyfloorStats")).price_in_cents / 100;
     this.opensea_floor =
       (await this.$http.$post("/", process.env.DATA_API + "/osfloorStats")).floor_price * this.eth_price;
+
+    data = await this.$http.$post("/", process.env.DATA_API + "/fungibleStats");
+    this.total_cube = data.FungibleTotal;
+    this.burnt_cubes = data.TotalCubesBurned;
+
+    data = await this.$http.$post("/", process.env.DATA_API + "/ashLiquidityStats");
+    this.total_ash = data.totalSupply;
+    this.ash_holders = data.holdersCount;
   },
   data: () => ({
     eth_price: 4241.755785657359203069158769979819,
@@ -81,6 +102,12 @@ export default {
 
     nifty_floor: { usd: 39000, eth: 9.18 },
     opensea_floor: { usd: 37389, eth: 8.8 },
+
+    total_cube: 6165,
+    burnt_cube: 3260,
+
+    total_ash: 2766202,
+    ash_holders: 2766202381037606635783568,
   }),
 
   created() {
@@ -139,8 +166,9 @@ section.cards {
 }
 section.ash_stats {
   height: 80vh;
-  @apply w-full;
-  @apply grid;
+  @apply w-full max-w-6xl;
+  @apply mx-auto;
+  @apply grid items-center;
   grid-template-columns: 1fr 2fr;
 }
 section.credits {
