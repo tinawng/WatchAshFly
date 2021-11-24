@@ -8,8 +8,8 @@ html {
   -ms-touch-action: manipulation;
   touch-action: manipulation;
 
-  font-family: "Suisse Intl";
-  @apply bg-white text-black tracking-wider;
+  font-family: "Graphik";
+  @apply bg-white text-dark tracking-tighter;
 }
 body {
   @apply relative;
@@ -24,7 +24,7 @@ body::after{
 }
 
 h1 {
-  @apply text-7xl font-bold;
+  @apply text-9xl font-semibold;
 }
 
 a.button {
@@ -48,26 +48,34 @@ a.button.dark {
 }
 
 @font-face {
-  font-family: 'Suisse Intl';
+  font-family: 'Graphik';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
   src: local(''),
-       url('../../static/fonts/suisse-intl/SuisseIntl-Regular-WebXL.woff') format('woff2');
+       url('../../static/fonts/graphik/GraphikRegular.woff2') format('woff2');
 }
 @font-face {
-  font-family: 'Suisse Intl';
+  font-family: 'Graphik';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: local(''),
+       url('../../static/fonts/graphik/GraphikMedium.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Graphik';
   font-style: normal;
   font-weight: 600;
   font-display: swap;
   src: local(''),
-       url('../../static/fonts/suisse-intl/SuisseIntl-SemiBold-WebXL.woff') format('woff2');
+       url('../../static/fonts/graphik/GraphikSemiBold.woff2') format('woff2');
 }
 @font-face {
-  font-family: 'Suisse Intl';
+  font-family: 'Graphik';
   font-style: normal;
   font-weight: 700;
   font-display: swap;
   src: local(''),
-       url('../../static/fonts/suisse-intl/SuisseIntl-Bold-WebXL.woff') format('woff2');
+       url('../../static/fonts/graphik/GraphikBold.woff2') format('woff2');
 }
