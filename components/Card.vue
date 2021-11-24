@@ -1,5 +1,5 @@
 <template>
-  <div ref="card" class="card__container" :class="{'card__burning': burning}">
+  <div ref="card" class="card__container" :class="{'card__dark': burning || dark}">
     <div v-if="img" class="card__logo_container"><img class="card__logo" :src="`/img/${img}`" alt="" /></div>
     <div v-else-if="video">
       <video class="rounded-t-2xl" loop autoplay muted name="media" :src="video"></video>
@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  props: { img: String, link: String, video: String, burning: Boolean },
+  props: { img: String, link: String, video: String, dark: Boolean,  burning: Boolean },
 
   mounted() {
     if (!this.burning) return;
@@ -54,6 +54,7 @@ export default {
   @apply rounded-2xl;
   @apply grid;
   grid-template-rows: 2fr 1fr;
+  @apply shadow-md;
 }
 
 .card__logo_container {
@@ -75,10 +76,7 @@ export default {
   @apply text-base opacity-30;
 }
 
-.card__burning {
-  @apply shadow-md;
-}
-.card__burning > .card__slot_container {
+.card__dark > .card__slot_container {
   @apply bg-white rounded-b-2xl text-dark;
 }
 </style>
