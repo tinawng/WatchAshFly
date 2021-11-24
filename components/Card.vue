@@ -8,7 +8,7 @@
       <slot />
     </div>
     <a class="absolute -bottom-5 left-16 button" :class="{'dark': burning}" :href="link">
-      <span v-if="burning">Burn</span>
+      <span v-if="burning" class="tracking-wide">Burn</span>
       <span v-else>Buy</span>
     </a>
   </div>
@@ -21,12 +21,26 @@ export default {
   mounted() {
     if (!this.burning) return;
     let el = this.$refs["card"];
-    var s = document.createElement("svg");
-    var p = document.createElement("polygon");
-    console.log(s);
-    // el.appendChild(cross);
+    for (let i = 0; i < 96; i++) {
+      var s = document.createElement("img");
+      s.setAttribute("src", "/img/burn.svg");
+      s.classList.add("burn_icon");
 
-    // <polygon points="225 9 234 0 243 9 252 0 261 9 252 18 261 27 252 36 243 27 234 36 225 27 234 18 225 9"></polygon>
+      var speed = this.mapRange(Math.random(), 5, 9);
+      var delay = this.mapRange(Math.random(), 0, 5);
+      var x_pos = this.mapRange(Math.random(), 0, 15.2);
+      var rot = this.mapRange(Math.random(), 0, 540);
+
+      s.style.cssText = `--speed: ${speed}s; --delay: ${delay}s; --x-pos: ${x_pos}rem; --rot: ${rot}deg`;
+
+      el.appendChild(s);
+    }
+  },
+
+  methods: {
+    mapRange(num, out_min = 0, out_max = 1, in_min = 0, in_max = 1) {
+      return ((num - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min;
+    },
   },
 };
 </script>
@@ -57,5 +71,24 @@ export default {
 }
 .card__burning > .card__slot_container {
   @apply bg-white rounded-b-2xl text-dark;
+}
+</style>
+
+<style lang="postcss">
+.burn_icon {
+  @apply absolute top-3 -z-1;
+  @apply h-3 w-3;
+  left: var(--x-pos);
+
+  animation: fly var(--speed) linear var(--delay) infinite;
+}
+
+@keyframes fly {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-120vh) rotate(var(--rot));
+  }
 }
 </style>
