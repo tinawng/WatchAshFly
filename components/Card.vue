@@ -7,7 +7,7 @@
     <div class="card__slot_container">
       <slot />
     </div>
-    <a class="absolute -bottom-5 left-16 button" :class="{'dark': burning}" :href="link">
+    <a class="absolute -bottom-5 left-24 button" :class="{'dark': burning}" :href="link">
       <span v-if="burning" class="tracking-wide">Burn</span>
       <span v-else>Buy</span>
     </a>
@@ -28,7 +28,7 @@ export default {
 
       var speed = this.mapRange(Math.random(), 5, 9);
       var delay = this.mapRange(Math.random(), 0, 5);
-      var x_pos = this.mapRange(Math.random(), 0, 15.2);
+      var x_pos = this.mapRange(Math.random(), 0.8, 19.2);
       var rot = this.mapRange(Math.random(), 0, 540);
 
       s.style.cssText = `--speed: ${speed}s; --delay: ${delay}s; --x-pos: ${x_pos}rem; --rot: ${rot}deg`;
@@ -48,7 +48,9 @@ export default {
 <style lang="postcss" scoped>
 .card__container {
   @apply relative z-50;
-  @apply h-96 w-64;
+  /* @apply h-96 w-64; */
+  height: 30rem;
+  width: 20rem;
   @apply rounded-2xl;
   @apply grid;
   grid-template-rows: 2fr 1fr;
@@ -64,6 +66,13 @@ export default {
 .card__slot_container {
   @apply px-8 py-4;
   @apply bg-dark rounded-b-2xl text-white;
+}
+.card__title {
+  @apply mb-3;
+  @apply text-2xl;
+}
+.card__desc {
+  @apply text-base opacity-30;
 }
 
 .card__burning {

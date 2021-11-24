@@ -13,11 +13,11 @@
         link="https://niftygateway.com/itemdetail/primary/0xc0cf5b82ae2352303b2ea02c3be88e23f2594171/8"
       >
         <ol>
-          <li class="mb-2 text-lg">Nifty Gateway</li>
-          <li class="text-xs opacity-30">Cube floor</li>
+          <li class="card__title">Nifty Gateway</li>
+          <li class="card__desc">Cube floor</li>
           <li>
-            ${{numberWithCommas(nifty_floor.usd)}}
-            <span class="text-xs tracking-wide opacity-40">/ {{nifty_floor.eth}}</span>
+            <span class="text-2xl">${{numberWithCommas(nifty_floor.usd)}}</span>
+            <span class="tracking-wide opacity-40">&nbsp;/ {{nifty_floor.eth}}</span>
             <span class="opacity-40">♦</span>
           </li>
         </ol>
@@ -29,11 +29,11 @@
         link="https://opensea.io/assets/0xc0cf5b82ae2352303b2ea02c3be88e23f2594171/22700080007"
       >
         <ol>
-          <li class="mb-2 text-lg">Opensea Gateway</li>
-          <li class="text-xs opacity-30">Cube floor</li>
+          <li class="card__title">Opensea Gateway</li>
+          <li class="card__desc">Cube floor</li>
           <li>
-            ${{numberWithCommas(opensea_floor.usd)}}
-            <span class="text-xs tracking-wide opacity-40">/ {{opensea_floor.eth}}</span>
+            <span class="text-2xl">${{numberWithCommas(opensea_floor.usd)}}</span>
+            <span class="tracking-wide opacity-40">&nbsp;/ {{opensea_floor.eth}}</span>
             <span class="opacity-40">♦</span>
           </li>
         </ol>
@@ -44,8 +44,11 @@
         link="https://burn.art/"
       >
         <ol>
-          <li class="mb-2 text-lg font-bold">Burnt Cubes</li>
-          <li>3,259 <span class="text-xs opacity-40">/ 6165</span></li>
+          <li class="card__title font-bold">Burnt Cubes</li>
+          <li>
+            <span class="text-2xl">3,259</span>
+            <span class="opacity-40">/ 6165</span>
+          </li>
         </ol>
       </card>
     </section>
