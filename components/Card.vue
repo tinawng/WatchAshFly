@@ -1,13 +1,13 @@
 <template>
   <div ref="card" class="card__container" :class="{'card__dark': burning || dark}">
     <div v-if="img" class="card__logo_container"><img class="card__logo" :src="`/img/${img}`" alt="" /></div>
-    <div v-else-if="video">
+    <div v-else-if="video" class="bg-black rounded-t-2xl">
       <video class="rounded-t-2xl" loop autoplay muted name="media" :src="video"></video>
     </div>
     <div class="card__slot_container">
       <slot />
     </div>
-    <a class="absolute -bottom-5 left-24 button" :class="{'dark': burning}" :href="link">
+    <a v-if="link" class="absolute -bottom-5 left-24 button" :class="{'dark': burning || dark}" :href="link">
       <span v-if="burning" class="tracking-wide">Burn</span>
       <span v-else>Buy</span>
     </a>
@@ -16,12 +16,12 @@
 
 <script>
 export default {
-  props: { img: String, link: String, video: String, dark: Boolean,  burning: Boolean },
+  props: { img: String, link: {type: String, default: null}, video: String, dark: Boolean,  burning: Boolean },
 
   mounted() {
     if (!this.burning) return;
     let el = this.$refs["card"];
-    for (let i = 0; i < 96; i++) {
+    for (let i = 0; i < 82; i++) {
       var s = document.createElement("img");
       s.setAttribute("src", "/img/burn.svg");
       s.classList.add("burn_icon");
@@ -75,6 +75,9 @@ export default {
 .card__desc {
   @apply text-base opacity-30;
 }
+.card__dark .card__desc {
+  @apply font-semibold;
+}
 
 .card__dark > .card__slot_container {
   @apply bg-white rounded-b-2xl text-dark;
@@ -86,6 +89,7 @@ export default {
   @apply absolute top-3 -z-1;
   @apply h-3 w-3;
   left: var(--x-pos);
+  will-change: transform;
 
   animation: fly var(--speed) linear var(--delay) infinite;
 }

@@ -52,21 +52,8 @@
         </ol>
       </card>
     </section>
-    <section class="ash_stats">
-      <card
-        class="mx-auto"
-        dark
-        video="https://media.niftygateway.com/video/upload/q_auto:good,w_800/v1618196543/Pak/ACube.mp4"
-        link="https://burn.art/"
-      >
-        <ol>
-          <li class="card__title font-bold">Burnt Cubes</li>
-          <li>
-            <span class="text-2xl">{{burnt_cube}}</span>
-            <span class="opacity-40">/ {{total_cube}}</span>
-          </li>
-        </ol>
-      </card>
+    <section class="stats">
+      <card-carousel :cubes="cubes_stats"></card-carousel>
       <div class="bg-dark">a</div>
     </section>
     <section class="credits"></section>
@@ -84,17 +71,28 @@ export default {
     // this.ash_price = (this.eth_price * parseFloat(data.token.derivedETH)).toFixed(3);
     this.setAshPrice(this.eth_price * parseFloat(data.token.derivedETH));
 
+    // Market Stats
     this.nifty_floor = (await this.$http.$post("/", process.env.DATA_API + "/niftyfloorStats")).price_in_cents / 100;
     this.opensea_floor =
       (await this.$http.$post("/", process.env.DATA_API + "/osfloorStats")).floor_price * this.eth_price;
 
-    data = await this.$http.$post("/", process.env.DATA_API + "/fungibleStats");
-    this.total_cube = data.FungibleTotal;
-    this.burnt_cubes = data.TotalCubesBurned;
-
+    // ASH stats
     data = await this.$http.$post("/", process.env.DATA_API + "/ashLiquidityStats");
     this.total_ash = data.totalSupply;
     this.ash_holders = data.holdersCount;
+
+    // Cubes stats
+    data = await this.$http.$post("/", process.env.DATA_API + "/fungibleStats");
+    this.total_cube = data.FungibleTotal;
+    this.burnt_cubes = data.TotalCubesBurned;
+    this.cubes_stats.push({ burnt: data.ACubeBurned, left: data.ACubeLeft });
+    this.cubes_stats.push({ burnt: data.FiveCubesBurned, left: data.FiveCubesLeft });
+    this.cubes_stats.push({ burnt: data.TenCubesBurned, left: data.TenCubesLeft });
+    this.cubes_stats.push({ burnt: data.TwentyCubesBurned, left: data.TwentyCubesLeft });
+    this.cubes_stats.push({ burnt: data.FiftyCubesBurned, left: data.FiftyCubesLeft });
+    this.cubes_stats.push({ burnt: data.HundredCubesBurned, left: data.HundredCubesLeft });
+    this.cubes_stats.push({ burnt: data.FiveHundredCubesBurned, left: data.FiveHundredCubesLeft });
+    this.cubes_stats.push({ burnt: data.ThousandCubesBurned, left: data.ThousandCubesLeft });
   },
   data: () => ({
     eth_price: 4241.755785657359203069158769979819,
@@ -108,6 +106,58 @@ export default {
 
     total_ash: 2766202,
     ash_holders: 2766202381037606635783568,
+
+    cubes_stats: [
+      {
+        name: "A Cube",
+        burnt: 3200,
+        left: 1948,
+        video: "https://media.niftygateway.com/video/upload/q_auto:good,w_800/v1618196543/Pak/ACube.mp4",
+      },
+      {
+        name: "Five Cubes",
+        burnt: 52,
+        left: 523,
+        video: "https://media.niftygateway.com/video/upload/q_auto:good,w_500/v1618197133/Pak/FiveCubes.mp4",
+      },
+      {
+        name: "Ten Cubes",
+        burnt: 3,
+        left: 244,
+        video: "https://media.niftygateway.com/video/upload/q_auto:good,w_500/v1618196775/Pak/TenCubes.mp4",
+      },
+      {
+        name: "Twenty Cubes",
+        burnt: 4,
+        left: 116,
+        video: "https://media.niftygateway.com/video/upload/q_auto:good,w_500/v1618196787/Pak/TwentyCubes.mp4",
+      },
+      {
+        name: "Fifty Cubes",
+        burnt: 2,
+        left: 36,
+        video:
+          "https://media.niftygateway.com/video/upload/q_auto:good,w_500/v1617754887/Ashley/Pak/Fungible Open Edition/5_Fifty_Cubes_mnfy6l.mp4",
+      },
+      {
+        name: "Hundred Cubes",
+        burnt: 0,
+        left: 34,
+        video: "https://media.niftygateway.com/video/upload/q_auto:good,w_500/v1618196813/Pak/HundredCubes.mp4",
+      },
+      {
+        name: "Five Hundred Cubes",
+        burnt: 0,
+        left: 4,
+        video: "https://media.niftygateway.com/video/upload/q_auto:good,w_500/v1618196788/Pak/FiveHundredCubes.mp4",
+      },
+      {
+        name: "Thousand Cubes",
+        burnt: 0,
+        left: 3,
+        video: "https://media.niftygateway.com/video/upload/q_auto:good,w_500/v1618196777/Pak/ThousandCubes.mp4",
+      },
+    ],
   }),
 
   created() {
@@ -164,10 +214,9 @@ section.cards {
   @apply bg-white;
   @apply flex justify-between items-center;
 }
-section.ash_stats {
-  height: 80vh;
-  @apply w-full max-w-6xl;
-  @apply mx-auto;
+section.stats {
+  @apply h-screen w-full max-w-6xl;
+  @apply mt-12 mx-auto;
   @apply grid items-center;
   grid-template-columns: 1fr 2fr;
 }

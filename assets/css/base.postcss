@@ -29,6 +29,13 @@ h1 {
 
 a.button {
   @apply h-12 w-32;
+}
+button {
+  @apply h-12 w-12;
+  @apply flex justify-center items-center;
+}
+a.button, button {
+  @apply z-50;
   @apply bg-white rounded-full shadow-lg;
   @apply text-lg text-center;
   line-height: 3rem;
@@ -36,16 +43,24 @@ a.button {
   @apply transition-all;
   transition-property: transform shadow;
 }
-a.button:hover {
+a.button:hover, button:hover {
   @apply transform -translate-y-1;
   @apply shadow-xl;
 }
-a.button:active {
+a.button:active, button:active {
   @apply transform translate-y-0;
   @apply shadow;
 }
 a.button.dark {
   @apply bg-dark text-white shadow-xl;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: all .4s;
+}
+.fade-enter, .fade-leave-to{
+  opacity: 0.15;
+  filter: blur(5px);
 }
 
 @font-face {
