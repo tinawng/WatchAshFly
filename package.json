@@ -3,13 +3,13 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
-    "generate": "nuxt generate --modern"
+    "dev": "nuxi dev",
+    "generate": "nuxi generate --modern"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
-    "nuxt": "^2.15.7",
+    "@nuxt/bridge": "npm:@nuxt/bridge-edge",
+    "nuxt-edge": "latest",
     "postcss": "^8.3.6",
     "@nuxtjs/tailwindcss": "^4.2.1",
     "@nuxtjs/dotenv": "^1.4.1",

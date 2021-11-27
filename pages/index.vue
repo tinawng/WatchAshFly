@@ -61,9 +61,7 @@
 </template>
 
 <script>
-import Card from "../components/Card.vue";
 export default {
-  components: { Card },
   async fetch() {
     let data = (await this.$http.$post("/", process.env.DATA_API + "/ashStats")).data;
     this.eth_price = 4241.755785657359203069158769979819;
