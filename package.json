@@ -10,9 +10,9 @@
   "devDependencies": {
     "@nuxt/bridge": "npm:@nuxt/bridge-edge",
     "nuxt-edge": "latest",
-    "postcss": "^8.3.6",
-    "@nuxtjs/tailwindcss": "^4.2.1",
-    "@nuxtjs/dotenv": "^1.4.1",
-    "@nuxt/http": "^0.6.4"
+    "postcss": "latest",
+    "@nuxtjs/tailwindcss": "latest",
+    "@nuxtjs/dotenv": "latest",
+    "@nuxt/http": "latest"
   }
 }
