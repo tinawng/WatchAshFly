@@ -5,11 +5,14 @@ export default {
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    title: 'Tina Nuxt/Tailwind Template',
+    title: 'Watch Ash Fly',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Tina Nuxt/Tailwind Template' }
+      { hid: 'description', name: 'description', content: 'Watch Ash Fly' },
+      { hid: 'og:title', name: 'og:title', content: 'Watch Ash Fly' },
+      { hid: 'og:description', name: 'og:description', content: 'Watch Ash Fly' },
+      { hid: 'og:image', name: 'og:image', content: '/preview.webp' }
     ],
     htmlAttrs: {
       lang: 'en'
@@ -36,7 +39,9 @@ export default {
 
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
-    '@nuxtjs/tailwindcss'
+    '@nuxtjs/tailwindcss',
+    '@nuxt/http',
+    '@nuxtjs/dotenv'
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
