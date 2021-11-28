@@ -1,7 +1,5 @@
 <template>
   <svg
-    :width="size"
-    :height="size"
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
@@ -9,7 +7,11 @@
     stroke-linecap="round"
     stroke-linejoin="round"
   >
-    <g v-if="!variant || variant == 'chevron-right'">
+  <g v-if="!variant || variant == 'pak'">
+      <circle stroke="white" fill="currentColor" cx="12" cy="12" r="10"></circle>
+      <circle stroke="white" fill="white" cx="12" cy="12" r="4"></circle>
+    </g>
+    <g v-else-if="variant == 'chevron-right'">
      <polyline points="9 18 15 12 9 6"></polyline>
     </g>
     <g v-else-if="variant == 'chevron-left'">
@@ -22,10 +24,6 @@
 export default {
   props: {
     variant: String,
-    size: {
-      type: Number,
-      default: 24,
-    },
     stroke: {
       type: Number,
       default: 1.5,

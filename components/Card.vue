@@ -9,7 +9,7 @@
     </div>
     <a v-if="link" class="absolute -bottom-5 left-24 button" :class="{'dark': burning || dark}" :href="link">
       <span v-if="burning" class="tracking-wide">Burn</span>
-      <span v-else>Buy</span>
+      <span v-else>Collect</span>
     </a>
   </div>
 </template>

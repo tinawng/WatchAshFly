@@ -18,10 +18,10 @@
     </transition>
 
     <button v-show="index != 0" class="carousell__button_previous" @click="index--">
-      <icon variant="chevron-left" :stroke="2.5"/>
+      <icon class="w-6" variant="chevron-left" :stroke="2.5"/>
     </button>
     <button v-show="index < cubes.length-1" class="carousell__button_next" @click="index++">
-      <icon variant="chevron-right" :stroke="2.5"/>
+      <icon class="w-6" variant="chevron-right" :stroke="2.5"/>
     </button>
   </div>
 </template>
@@ -30,7 +30,7 @@
 import Card from "./Card.vue";
 export default {
   components: { Card },
-  props: { cubes: Object },
+  props: { cubes: Array },
   data: () => ({ index: 1 }),
   computed: {
     burnt_percentage: function () {

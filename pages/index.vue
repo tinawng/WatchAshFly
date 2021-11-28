@@ -1,9 +1,9 @@
 <template>
   <div class="page__container">
     <section class="ash_price">
-      <h1>${{ash_price.toFixed(3)}}</h1>
+      <span class="text-9xl font-semibold">${{ash_price.toFixed(3)}}</span>
       <div class="overflow-hidden">
-        <span ref="title" class="text-8xl tracking-tighter">Watch&nbsp;the&nbsp;ASH&nbsp;fly</span>
+        <h1 ref="title">Watch&nbsp;the&nbsp;ASH&nbsp;fly</h1>
       </div>
     </section>
     <section class="cards">
@@ -16,14 +16,14 @@
           <li class="card__title">Nifty Gateway</li>
           <li class="card__desc">Cube floor</li>
           <li>
-            <span class="text-2xl">${{numberWithCommas(nifty_floor.usd)}}</span>
-            <span class="tracking-wide opacity-40">&nbsp;/ {{nifty_floor.eth}}</span>
+            <span class="text-2xl">${{numberWithCommas(Math.round(nifty_floor.usd))}}</span>
+            <span class="tracking-wide opacity-40">&nbsp;/ {{nifty_floor.eth.toFixed(2)}}</span>
             <span class="opacity-40">♦</span>
           </li>
         </ol>
       </card>
       <card
-        class="mb-16"
+        class="mb-20"
         style="background: linear-gradient(45deg, #1868B7 0%, #2BCDE4 100%);"
         img="opensea.svg"
         link="https://opensea.io/assets/0xc0cf5b82ae2352303b2ea02c3be88e23f2594171/22700080007"
@@ -32,8 +32,8 @@
           <li class="card__title">Opensea Gateway</li>
           <li class="card__desc">Cube floor</li>
           <li>
-            <span class="text-2xl">${{numberWithCommas(opensea_floor.usd)}}</span>
-            <span class="tracking-wide opacity-40">&nbsp;/ {{opensea_floor.eth}}</span>
+            <span class="text-2xl">${{numberWithCommas(Math.round(opensea_floor.usd))}}</span>
+            <span class="tracking-wide opacity-40">&nbsp;/ {{opensea_floor.eth.toFixed(2)}}</span>
             <span class="opacity-40">♦</span>
           </li>
         </ol>
@@ -54,30 +54,47 @@
     </section>
     <section class="stats">
       <card-carousel :cubes="cubes_stats"></card-carousel>
-      <div class="bg-dark">a</div>
+      <div class="text-right">
+        <span class="text-9xl font-semibold">{{ash_rate.toFixed(3)}}</span>
+        <h1>ASH per <a href="https://burn.art/">burn</a></h1>
+      </div>
     </section>
-    <section class="credits"></section>
+    <section class="pak">
+      <icon ref="pak" class="w-1/3 opacity-0" variant="pak" />
+    </section>
+    <section class="credits">
+      <p><b>Buy me </b><span class="text-l">☕</span></p>
+      <p><b>0xC958c2B65E9840F76E34EE660e27cCf254d75Fa4</b></p>
+      <p>Base on <a href="https://watchcubesburn.art/">watchcubesburn.art</a> by [secondstate]</p>
+    </section>
   </div>
 </template>
 
 <script>
+import intersection_helper from "~/mixins/intersection-helper.js";
 export default {
+  mixins: [intersection_helper],
+
   async fetch() {
     let data = (await this.$http.$post("/", process.env.DATA_API + "/ashStats")).data;
     this.eth_price = 4241.755785657359203069158769979819;
-    // this.eth_price = parseFloat(data.bundle.ethPriceUSD);
-    // this.ash_price = (this.eth_price * parseFloat(data.token.derivedETH)).toFixed(3);
-    this.setAshPrice(this.eth_price * parseFloat(data.token.derivedETH));
+    this.eth_price = parseFloat(data.bundle.ethPriceUSD);
+    this.ash_price = this.eth_price * parseFloat(data.token.derivedETH);
+    // this.setAshPrice(this.eth_price * parseFloat(data.token.derivedETH));
 
     // Market Stats
-    this.nifty_floor = (await this.$http.$post("/", process.env.DATA_API + "/niftyfloorStats")).price_in_cents / 100;
-    this.opensea_floor =
-      (await this.$http.$post("/", process.env.DATA_API + "/osfloorStats")).floor_price * this.eth_price;
+    data = await this.$http.$post("/", process.env.DATA_API + "/niftyfloorStats");
+    this.nifty_floor = {
+      usd: data.price_in_cents / 100,
+      eth: data.price_in_cents / 100 / this.eth_price,
+    };
+    data = await this.$http.$post("/", process.env.DATA_API + "/osfloorStats");
+    this.opensea_floor = { usd: data.floor_price * this.eth_price, eth: data.floor_price };
 
     // ASH stats
     data = await this.$http.$post("/", process.env.DATA_API + "/ashLiquidityStats");
-    this.total_ash = data.totalSupply;
-    this.ash_holders = data.holdersCount;
+    this.total_ash = data.totalSupply / 10e17;
+    this.ash_rate = 1e3 * Math.pow(0.5, this.total_ash / 5e6);
 
     // Cubes stats
     data = await this.$http.$post("/", process.env.DATA_API + "/fungibleStats");
@@ -103,7 +120,7 @@ export default {
     burnt_cube: 3260,
 
     total_ash: 2766202,
-    ash_holders: 2766202381037606635783568,
+    ash_rate: 680.909,
 
     cubes_stats: [
       {
@@ -170,26 +187,17 @@ export default {
       spans[i] = spans[i] + i * 0.06;
     }
     el.innerHTML = spans.join("");
+
+    this.intersectionTrigger(
+      this.$refs["pak"].$el,
+      () => {
+        this.$refs["pak"].$el.classList.add("invoke");
+      },
+      0.6
+    );
   },
 
   methods: {
-    setAshPrice(new_val) {
-      let start = this.ash_price;
-      let end = new_val;
-
-      var range = end - start;
-      var current = start;
-      var increment = end > start ? 0.001 : -1;
-      var stepTime = 1;
-      var timer = setInterval(() => {
-        current += increment;
-        this.ash_price = current;
-        if (current >= end) {
-          clearInterval(timer);
-        }
-      }, stepTime);
-    },
-
     numberWithCommas(num) {
       return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     },
@@ -206,20 +214,39 @@ section.ash_price {
   @apply flex flex-col justify-center text-left;
 }
 section.cards {
-  height: 80vh;
   @apply w-full max-w-6xl;
   @apply mx-auto;
   @apply bg-white;
   @apply flex justify-between items-center;
 }
 section.stats {
-  @apply h-screen w-full max-w-6xl;
-  @apply mt-12 mx-auto;
+  @apply w-full max-w-6xl;
+  @apply mt-72 mx-auto;
   @apply grid items-center;
   grid-template-columns: 1fr 2fr;
 }
+section.pak {
+  @apply mt-16;
+  @apply flex justify-center;
+}
 section.credits {
   @apply h-32 w-full;
+  @apply mt-16;
+  @apply text-center;
+}
+
+.invoke {
+  animation: invoke 0.6s ease-in-out forwards;
+}
+@keyframes invoke {
+  from {
+    opacity: 0;
+    transform: translateY(5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .slide {
