@@ -10,9 +10,13 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: 'Watch Ash Fly' },
-      { hid: 'og:title', name: 'og:title', content: 'Watch Ash Fly' },
-      { hid: 'og:description', name: 'og:description', content: 'Watch Ash Fly' },
-      { hid: 'og:image', name: 'og:image', content: '/preview.webp' }
+
+      { hid: 'og:type', name: 'og:type', property: 'og:type', content: 'website' },
+      { hid: 'og:title', name: 'og:title', property: 'og:title', content: 'Watch Ash Fly' },
+      { hid: 'og:site_name', name: 'og:site_name', property: 'og:site_name', content: 'Watch Ash Fly' },
+      { hid: 'og:description', name: 'og:description', property: 'og:site_name', content: '$ASH and Fungibles stats' },
+      { hid: 'og:url', name: 'og:url', property: 'og:url', content: 'https://watchashfly.tina.cafe/' },
+      { hid: 'og:image', name: 'og:image', property: 'og:image', content: 'https://watchashfly.tina.cafe/preview.webp' }
     ],
     htmlAttrs: {
       lang: 'en'
