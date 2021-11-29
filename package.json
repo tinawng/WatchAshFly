@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "nuxi dev",
-    "generate": "nuxi generate --modern"
+    "generate": "nuxi generate --modern",
+    "deploy": "scp -r ./dist siyu:/home/pi/work/static-servers/watchashfly && ssh siyu \"(cd /home/pi/work/static-servers/watchashfly && yarn compress && pm2 restart 'WatchAshFly')\""
   },
   "dependencies": {},
   "devDependencies": {
