@@ -6,7 +6,37 @@
         <h1 ref="title">Watch&nbsp;the&nbsp;ASH&nbsp;fly</h1>
       </div>
     </section>
+    <section class="one">
+      <div class="text-left">
+        <span class="text-9xl font-semibold">{{numberWithCommas(Math.round(total_ash))}}</span>
+        <h1 class="mt-1">ASH total</h1>
+      </div>
+      <card
+        burning
+        video="https://media.niftygateway.com/video/upload/q_auto:good,w_800/v1618196543/Pak/ACube.mp4"
+        link="https://burn.art/"
+      >
+        <ol>
+          <li class="card__title font-bold">Burnt Cubes</li>
+          <li>
+            <span class="text-2xl">{{burnt_cube}}</span>
+            <span class="opacity-40">/ {{total_cube}}</span>
+          </li>
+        </ol>
+      </card>
+    </section>
+    <section class="two">
+      <card-carousel :cubes="cubes_stats"></card-carousel>
+      <div class="text-right">
+        <span class="text-9xl font-semibold">{{ash_rate.toFixed(3)}}</span>
+        <h1>ASH per <a href="https://burn.art/">burn</a></h1>
+      </div>
+    </section>
     <section class="cards">
+      <div>
+        <h1 class="font-semibold" style="text-align: center">"A Cube"</h1>
+        <h1 style="text-align: center">floor</h1>
+      </div>
       <card
         style="background: linear-gradient(135deg, #00FABA 0%, #00D8FF 100%);"
         img="nifty.svg"
@@ -23,7 +53,6 @@
         </ol>
       </card>
       <card
-        class="mb-20"
         style="background: linear-gradient(45deg, #1868B7 0%, #2BCDE4 100%);"
         img="opensea.svg"
         link="https://opensea.io/assets/0xc0cf5b82ae2352303b2ea02c3be88e23f2594171/22700080007"
@@ -38,26 +67,6 @@
           </li>
         </ol>
       </card>
-      <card
-        burning
-        video="https://media.niftygateway.com/video/upload/q_auto:good,w_800/v1618196543/Pak/ACube.mp4"
-        link="https://burn.art/"
-      >
-        <ol>
-          <li class="card__title font-bold">Burnt Cubes</li>
-          <li>
-            <span class="text-2xl">{{burnt_cube}}</span>
-            <span class="opacity-40">/ {{total_cube}}</span>
-          </li>
-        </ol>
-      </card>
-    </section>
-    <section class="stats">
-      <card-carousel :cubes="cubes_stats"></card-carousel>
-      <div class="text-right">
-        <span class="text-9xl font-semibold">{{ash_rate.toFixed(3)}}</span>
-        <h1>ASH per <a href="https://burn.art/">burn</a></h1>
-      </div>
     </section>
     <section class="pak">
       <icon ref="pak" class="w-1/3 opacity-0" variant="pak" />
@@ -213,20 +222,28 @@ section.ash_price {
   @apply pl-12;
   @apply flex flex-col justify-center text-left;
 }
-section.cards {
+section.one {
   @apply w-full max-w-6xl;
   @apply mx-auto;
-  @apply bg-white;
-  @apply flex justify-between items-center;
+  @apply grid items-center;
+  grid-template-columns: 2fr 1fr;
 }
-section.stats {
+section.two {
   @apply w-full max-w-6xl;
-  @apply mt-72 mx-auto;
+  @apply mt-40 mx-auto;
   @apply grid items-center;
   grid-template-columns: 1fr 2fr;
 }
+section.cards {
+  @apply w-full max-w-6xl;
+  @apply mt-40 mx-auto;
+  /* @apply grid items-center gap-12;
+  grid-template-columns: repeat(3, auto); */
+  @apply flex justify-between items-center;
+  @apply bg-white;
+}
 section.pak {
-  @apply mt-16;
+  @apply mt-40;
   @apply flex justify-center;
 }
 section.credits {
