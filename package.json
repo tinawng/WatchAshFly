@@ -3,14 +3,13 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "nuxi dev",
-    "generate": "nuxi generate --modern",
+    "dev": "nuxt",
+    "generate": "nuxt generate --modern",
     "deploy": "scp -r ./dist siyu:/home/pi/work/static-servers/watchashfly && ssh siyu \"(cd /home/pi/work/static-servers/watchashfly && yarn compress && pm2 restart 'WatchAshFly')\""
   },
   "dependencies": {},
   "devDependencies": {
-    "@nuxt/bridge": "npm:@nuxt/bridge-edge",
-    "nuxt-edge": "latest",
+    "nuxt": "latest",
     "postcss": "latest",
     "@nuxtjs/tailwindcss": "latest",
     "@nuxtjs/dotenv": "latest",
