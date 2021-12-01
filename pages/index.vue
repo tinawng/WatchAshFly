@@ -1,14 +1,16 @@
 <template>
   <div class="page__container">
     <section class="ash_price">
-      <span class="text-9xl font-semibold">${{ash_price.toFixed(3)}}</span>
-      <div class="overflow-hidden">
-        <h1 ref="title">Watch&nbsp;the&nbsp;ASH&nbsp;fly</h1>
+      <div class="text-9xl font-semibold overflow-hidden">
+        $<span ref="ash-price">{{ash_price.toFixed(3)}}</span>
       </div>
+      <h1>Watch the ASH fly</h1>
     </section>
     <section class="one">
       <div class="text-left">
-        <span class="text-9xl font-semibold">{{numberWithCommas(Math.round(total_ash))}}</span>
+        <div class="overflow-hidden">
+          <span ref="total-ash" class="text-9xl font-semibold">{{numberWithCommas(Math.round(total_ash))}}</span>
+        </div>
         <h1 class="mt-1">ASH total</h1>
       </div>
       <card
@@ -28,7 +30,9 @@
     <section class="two">
       <card-carousel :cubes="cubes_stats"></card-carousel>
       <div class="text-right">
-        <span class="text-9xl font-semibold">{{ash_rate.toFixed(3)}}</span>
+        <div class="overflow-hidden">
+          <span ref="ash-rate" class="text-9xl font-semibold">{{ash_rate.toFixed(3)}}</span>
+        </div>
         <h1>ASH per <a href="https://burn.art/">burn</a></h1>
       </div>
     </section>
@@ -183,19 +187,64 @@ export default {
       },
     ],
   }),
+  watch: {
+    ash_price: function (new_value) {
+      this.rollOutNumbers(new_value);
+    },
+  },
 
   created() {
-    //   setTimeout(this.fetch)
+    //TODO: setTimeout(this.fetch)
   },
 
   mounted() {
-    let el = this.$refs["title"];
-    el.innerHTML = el.textContent.replace(/\w/g, '<span class="slide" style="--delay: #s">$&</span>');
+    // 💫 Trigger animation for Ash price
+    let el = this.$refs["ash-price"];
+    el.innerHTML = el.textContent.replace(/./g, '<span id="slide-number" style="--delay: #s">$&</span>');
     var spans = el.innerHTML.split("#");
     for (let i = 0; i < spans.length - 1; i++) {
       spans[i] = spans[i] + i * 0.06;
     }
     el.innerHTML = spans.join("");
+
+    // FIXME: Add `once` boolean to prevent multiple triggering
+    // 💫 Trigger animation for total Ash
+    this.intersectionTrigger(
+      this.$refs["total-ash"],
+      () => {
+        let el = this.$refs["total-ash"];
+        el.innerHTML = el.textContent.replace(/./g, '<span class="slide-in" style="--delay: #s">$&</span>');
+        var spans = el.innerHTML.split("#");
+        for (let i = 0; i < spans.length - 1; i++) {
+          spans[i] = spans[i] + i * 0.06;
+        }
+        el.innerHTML = spans.join("");
+      },
+      0.2
+    );
+    // 💫 Trigger animation for Ash rate
+    this.intersectionTrigger(
+      this.$refs["ash-rate"],
+      () => {
+        let el = this.$refs["ash-rate"];
+        el.innerHTML = el.textContent.replace(/./g, '<span class="slide-in" style="--delay: #s">$&</span>');
+        var spans = el.innerHTML.split("#");
+        for (let i = 0; i < spans.length - 1; i++) {
+          spans[i] = spans[i] + i * 0.06;
+        }
+        el.innerHTML = spans.join("");
+      },
+      0.2
+    );
+
+    // 💫 Trigger animation for Pak
+    this.intersectionTrigger(
+      this.$refs["pak"].$el,
+      () => {
+        this.$refs["pak"].$el.classList.add("invoke");
+      },
+      0.6
+    );
 
     this.intersectionTrigger(
       this.$refs["pak"].$el,
@@ -210,6 +259,28 @@ export default {
     numberWithCommas(num) {
       return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     },
+    rollOutNumbers(new_value) {
+      let els = document.querySelectorAll("#slide-number");
+      for (const el of els) {
+        el.classList.remove("slide-in");
+        el.classList.add("slide-out");
+      }
+      setTimeout(() => {
+        this.ash_price = new_value;
+
+        let el = this.$refs["ash-price"];
+        el.innerHTML = this.ash_price.toFixed(3);
+        el.innerHTML = el.textContent.replace(
+          /./g,
+          '<span id="slide-number" class="slide-in" style="--delay: #s">$&</span>'
+        );
+        var spans = el.innerHTML.split("#");
+        for (let i = 0; i < spans.length - 1; i++) {
+          spans[i] = spans[i] + i * 0.06;
+        }
+        el.innerHTML = spans.join("");
+      }, 800);
+    },
   },
 };
 </script>
@@ -221,6 +292,9 @@ section.ash_price {
   @apply mx-auto;
   @apply pl-12;
   @apply flex flex-col justify-center text-left;
+}
+#slide-number {
+  @apply inline-block;
 }
 section.one {
   @apply w-full max-w-6xl;
@@ -266,17 +340,35 @@ section.credits {
   }
 }
 
-.slide {
-  display: inline-block;
-  transform: translateY(2ch);
-  animation: slide 1s ease-in-out var(--delay) forwards;
+.slide-in {
+  @apply inline-block;
+  transform: translateY(1.5ch);
+  animation: slide-in 0.8s ease-in-out var(--delay) forwards;
 }
-@keyframes slide {
+@keyframes slide-in {
   from {
-    transform: translateY(2ch);
+    transform: translateY(1.5ch);
+  }
+  75% {
+    transform: translateY(-0.03ch);
   }
   to {
     transform: translateY(0);
+  }
+}
+.slide-out {
+  @apply inline-block;
+  animation: slide-out 0.8s ease-in-out var(--delay) forwards;
+}
+@keyframes slide-out {
+  from {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(0.03ch);
+  }
+  to {
+    transform: translateY(-1.5ch);
   }
 }
 </style>
