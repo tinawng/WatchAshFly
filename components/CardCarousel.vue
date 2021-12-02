@@ -10,8 +10,8 @@
             <div class="h-4 flex-grow bg-dark bg-opacity-5"></div>
           </li>
           <li class="mt-1 flex justify-between">
-            <span class="text-sm font-medium tracking-wide">{{cubes[index].burnt}}</span>
-            <span class="text-sm font-medium tracking-wide opacity-30">{{cubes[index].left}}</span>
+            <span class="text-sm font-semibold tracking-wide">{{cubes[index].burnt}}</span>
+            <span class="text-sm font-semibold tracking-wide opacity-30">{{cubes[index].left}}</span>
           </li>
         </ol>
       </card>
