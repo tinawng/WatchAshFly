@@ -9,7 +9,9 @@
     <section class="one">
       <div class="text-left">
         <div class="overflow-hidden">
-          <span ref="total-ash" class="text-9xl font-semibold">{{numberWithCommas(Math.round(total_ash))}}</span>
+          <span ref="total-ash" class="text-9xl font-semibold">
+            <span class="opacity-0">{{numberWithCommas(Math.round(total_ash))}}</span>
+          </span>
         </div>
         <h1 class="mt-1">ASH total</h1>
       </div>
@@ -31,7 +33,9 @@
       <card-carousel :cubes="cubes_stats"></card-carousel>
       <div class="text-right">
         <div class="overflow-hidden">
-          <span ref="ash-rate" class="text-9xl font-semibold">{{ash_rate.toFixed(3)}}</span>
+          <span ref="ash-rate" class="text-9xl font-semibold">
+            <span class="opacity-0">{{ash_rate.toFixed(3)}}</span>
+          </span>
         </div>
         <h1>ASH per <a href="https://burn.art/">burn</a></h1>
       </div>
@@ -207,8 +211,7 @@ export default {
     }
     el.innerHTML = spans.join("");
 
-    // FIXME: Add `once` boolean to prevent multiple triggering
-    // 💫 Trigger animation for total Ash
+    // 💫 Animation trigger for total Ash
     this.intersectionTrigger(
       this.$refs["total-ash"],
       () => {
@@ -220,9 +223,9 @@ export default {
         }
         el.innerHTML = spans.join("");
       },
-      0.2
+      0.8
     );
-    // 💫 Trigger animation for Ash rate
+    // 💫 Animation trigger for Ash rate
     this.intersectionTrigger(
       this.$refs["ash-rate"],
       () => {
@@ -234,7 +237,7 @@ export default {
         }
         el.innerHTML = spans.join("");
       },
-      0.2
+      0.8
     );
 
     // 💫 Trigger animation for Pak

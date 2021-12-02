@@ -1,14 +1,17 @@
 export default {
     methods: {
-        intersectionTrigger(target, callback = () => { }, callback_threshold = 0.8) {
+        intersectionTrigger(target, callback = () => { }, callback_threshold = 0.8, once = true) {
             var options = {
-                threshold: [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
+                threshold: [0.0, 0.2, 0.4, 0.6, 0.8, 1.0]
             };
             var observer = new IntersectionObserver((entries) => {
                 entries.forEach((entry) => {
                     const threshold = entry.intersectionRatio;
 
-                    if (threshold >= callback_threshold) callback();
+                    if (threshold >= callback_threshold) {
+                        callback();
+                        if (once) observer.disconnect(target)
+                    }
                 });
             }, options);
 
