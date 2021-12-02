@@ -6,6 +6,7 @@
       </div>
       <h1>Watch the ASH fly</h1>
     </section>
+
     <section class="one">
       <div class="text-left">
         <div class="overflow-hidden">
@@ -29,6 +30,7 @@
         </ol>
       </card>
     </section>
+
     <section class="two">
       <card-carousel :cubes="cubes_stats"></card-carousel>
       <div class="text-right">
@@ -40,7 +42,8 @@
         <h1>ASH per <a href="https://burn.art/">burn</a></h1>
       </div>
     </section>
-    <section class="cards">
+
+    <section class="marketplaces">
       <div>
         <h1 class="font-semibold" style="text-align: center">"A Cube"</h1>
         <h1 style="text-align: center">floor</h1>
@@ -76,9 +79,11 @@
         </ol>
       </card>
     </section>
+
     <section class="pak">
       <icon ref="pak" class="w-1/3 opacity-0" variant="pak" />
     </section>
+
     <section class="credits">
       <p><b>Buy me </b><span class="text-l">☕</span></p>
       <p><b>0xC958c2B65E9840F76E34EE660e27cCf254d75Fa4</b></p>
@@ -216,12 +221,11 @@ export default {
       this.$refs["total-ash"],
       () => {
         let el = this.$refs["total-ash"];
-        el.innerHTML = el.textContent.replace(/./g, '<span class="slide-in" style="--delay: #s">$&</span>');
-        var spans = el.innerHTML.split("#");
-        for (let i = 0; i < spans.length - 1; i++) {
-          spans[i] = spans[i] + i * 0.06;
-        }
-        el.innerHTML = spans.join("");
+        el.innerHTML = el.textContent.replace(/./g, '<span class="slide-in" style="--delay: ||s">$&</span>');
+        el.innerHTML = el.innerHTML
+          .split("||")
+          .map((span, i, arr) => (i < arr.length - 1 ? span + i * 0.06 : ""))
+          .join("");
       },
       0.8
     );
@@ -230,25 +234,16 @@ export default {
       this.$refs["ash-rate"],
       () => {
         let el = this.$refs["ash-rate"];
-        el.innerHTML = el.textContent.replace(/./g, '<span class="slide-in" style="--delay: #s">$&</span>');
-        var spans = el.innerHTML.split("#");
-        for (let i = 0; i < spans.length - 1; i++) {
-          spans[i] = spans[i] + i * 0.06;
-        }
-        el.innerHTML = spans.join("");
+        el.innerHTML = el.textContent.replace(/./g, '<span class="slide-in" style="--delay: ||s">$&</span>');
+        el.innerHTML = el.innerHTML
+          .split("||")
+          .map((span, i, arr) => (i < arr.length - 1 ? span + i * 0.06 : ""))
+          .join("");
       },
       0.8
     );
 
     // 💫 Trigger animation for Pak
-    this.intersectionTrigger(
-      this.$refs["pak"].$el,
-      () => {
-        this.$refs["pak"].$el.classList.add("invoke");
-      },
-      0.6
-    );
-
     this.intersectionTrigger(
       this.$refs["pak"].$el,
       () => {
@@ -275,13 +270,12 @@ export default {
         el.innerHTML = this.ash_price.toFixed(3);
         el.innerHTML = el.textContent.replace(
           /./g,
-          '<span id="slide-number" class="slide-in" style="--delay: #s">$&</span>'
+          '<span id="slide-number" class="slide-in" style="--delay: ||s">$&</span>'
         );
-        var spans = el.innerHTML.split("#");
-        for (let i = 0; i < spans.length - 1; i++) {
-          spans[i] = spans[i] + i * 0.06;
-        }
-        el.innerHTML = spans.join("");
+        el.innerHTML = el.innerHTML
+          .split("||")
+          .map((span, i, arr) => (i < arr.length - 1 ? span + i * 0.06 : ""))
+          .join("");
       }, 800);
     },
   },
@@ -311,7 +305,7 @@ section.two {
   @apply grid items-center;
   grid-template-columns: 1fr 2fr;
 }
-section.cards {
+section.marketplaces {
   @apply w-full max-w-6xl;
   @apply mt-40 mx-auto;
   /* @apply grid items-center gap-12;
@@ -329,6 +323,7 @@ section.credits {
   @apply text-center;
 }
 
+/* 💫 Animations */
 .invoke {
   animation: invoke 0.6s ease-in-out forwards;
 }
