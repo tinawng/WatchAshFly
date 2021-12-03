@@ -73,7 +73,7 @@ export default {
   @apply text-2xl;
 }
 .card__desc {
-  @apply text-base opacity-30;
+  @apply text-base tracking-normal opacity-30;
 }
 .card__dark .card__desc {
   @apply font-semibold;

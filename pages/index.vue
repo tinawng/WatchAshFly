@@ -10,11 +10,11 @@
     <section class="one">
       <div class="text-left">
         <div class="overflow-hidden">
-          <span ref="total-ash" class="text-9xl font-semibold">
-            <span class="opacity-0">{{numberWithCommas(Math.round(total_ash))}}</span>
+          <span ref="ash-rate" class="text-9xl font-semibold">
+            <span class="opacity-0">{{ash_rate.toFixed(3)}}</span>
           </span>
         </div>
-        <h1 class="mt-1">ASH total</h1>
+        <h1>ASH per <a href="https://burn.art/">burn</a></h1>
       </div>
       <card
         burning
@@ -35,15 +35,51 @@
       <card-carousel :cubes="cubes_stats"></card-carousel>
       <div class="text-right">
         <div class="overflow-hidden">
-          <span ref="ash-rate" class="text-9xl font-semibold">
-            <span class="opacity-0">{{ash_rate.toFixed(3)}}</span>
+          <span ref="total-ash" class="text-9xl font-semibold">
+            <span class="opacity-0">{{numberWithCommas(Math.round(total_ash))}}</span>
           </span>
         </div>
-        <h1>ASH per <a href="https://burn.art/">burn</a></h1>
+        <h1 class="mt-1">ASH total</h1>
       </div>
     </section>
 
     <section class="marketplaces">
+      <div>
+        <h1 class="font-semibold" style="text-align: center">Buy</h1>
+        <h1 style="text-align: center">$ASH</h1>
+      </div>
+      <card
+        style="background: linear-gradient(-135deg, #FF007A 0%, #FF6EBA 100%);"
+        img="uniswap.svg"
+        link="https://v2.info.uniswap.org/token/0x64d91f12ece7362f91a6f8e7940cd55f05060b92"
+      >
+        <ol>
+          <li class="card__title">Uniswap</li>
+          <li class="card__desc">Price floor</li>
+          <li>
+            <span class="text-2xl">${{ash_price.toFixed(3)}}</span>
+            <span class="tracking-wide opacity-40">&nbsp;/ {{(ash_price / eth_price).toFixed(4)}}</span>
+            <span class="opacity-40">♦</span>
+          </li>
+        </ol>
+      </card>
+      <card
+        style="background: linear-gradient(25deg, #00DCFA 0%, #90C2FF 100%);"
+        img="gemini.svg"
+        link="https://www.gemini.com/prices/burn"
+      >
+        <ol>
+          <li class="card__title">Gemini</li>
+          <li class="card__desc">Price floor</li>
+          <li>
+            <span class="text-2xl">${{49.90.toFixed(2)}}</span>
+            <span class="tracking-wide opacity-40">&nbsp;/ {{(49.90 / eth_price).toFixed(4)}}</span>
+            <span class="opacity-40">♦</span>
+          </li>
+        </ol>
+      </card>
+    </section>
+    <section class="marketplaces flex-row-reverse">
       <div>
         <h1 class="font-semibold" style="text-align: center">"A Cube"</h1>
         <h1 style="text-align: center">floor</h1>
@@ -227,7 +263,7 @@ export default {
           .map((span, i, arr) => (i < arr.length - 1 ? span + i * 0.06 : ""))
           .join("");
       },
-      0.8
+      0.6
     );
     // 💫 Animation trigger for Ash rate
     this.intersectionTrigger(
@@ -240,7 +276,7 @@ export default {
           .map((span, i, arr) => (i < arr.length - 1 ? span + i * 0.06 : ""))
           .join("");
       },
-      0.8
+      0.6
     );
 
     // 💫 Trigger animation for Pak
