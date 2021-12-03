@@ -45,7 +45,7 @@
 
     <section class="marketplaces">
       <div>
-        <h1 class="font-semibold" style="text-align: center">Buy</h1>
+        <h1 class="font-semibold" style="text-align: center">Get</h1>
         <h1 style="text-align: center">$ASH</h1>
       </div>
       <card
@@ -158,14 +158,14 @@ export default {
     data = await this.$http.$post("/", process.env.DATA_API + "/fungibleStats");
     this.total_cube = data.FungibleTotal;
     this.burnt_cubes = data.TotalCubesBurned;
-    this.cubes_stats.push({ burnt: data.ACubeBurned, left: data.ACubeLeft });
-    this.cubes_stats.push({ burnt: data.FiveCubesBurned, left: data.FiveCubesLeft });
-    this.cubes_stats.push({ burnt: data.TenCubesBurned, left: data.TenCubesLeft });
-    this.cubes_stats.push({ burnt: data.TwentyCubesBurned, left: data.TwentyCubesLeft });
-    this.cubes_stats.push({ burnt: data.FiftyCubesBurned, left: data.FiftyCubesLeft });
-    this.cubes_stats.push({ burnt: data.HundredCubesBurned, left: data.HundredCubesLeft });
-    this.cubes_stats.push({ burnt: data.FiveHundredCubesBurned, left: data.FiveHundredCubesLeft });
-    this.cubes_stats.push({ burnt: data.ThousandCubesBurned, left: data.ThousandCubesLeft });
+    Object.assign(this.cubes_stats[0], { burnt: data.ACubeBurned, left: data.ACubeLeft });
+    Object.assign(this.cubes_stats[1], { burnt: data.FiveCubesBurned, left: data.FiveCubesLeft });
+    Object.assign(this.cubes_stats[2], { burnt: data.TenCubesBurned, left: data.TenCubesLeft });
+    Object.assign(this.cubes_stats[3], { burnt: data.TwentyCubesBurned, left: data.TwentyCubesLeft });
+    Object.assign(this.cubes_stats[4], { burnt: data.FiftyCubesBurned, left: data.FiftyCubesLeft });
+    Object.assign(this.cubes_stats[5], { burnt: data.HundredCubesBurned, left: data.HundredCubesLeft });
+    Object.assign(this.cubes_stats[6], { burnt: data.FiveHundredCubesBurned, left: data.FiveHundredCubesLeft });
+    Object.assign(this.cubes_stats[7], { burnt: data.ThousandCubesBurned, left: data.ThousandCubesLeft });
   },
   data: () => ({
     eth_price: 4241.755785657359203069158769979819,
