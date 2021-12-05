@@ -16,7 +16,9 @@ export default {
       { hid: 'og:site_name', name: 'og:site_name', property: 'og:site_name', content: 'Watch Ash Fly' },
       { hid: 'og:description', name: 'og:description', property: 'og:description', content: '$ASH and Fungibles stats' },
       { hid: 'og:url', name: 'og:url', property: 'og:url', content: 'https://watchashfly.tina.cafe/' },
-      { hid: 'og:image', name: 'og:image', property: 'og:image', content: 'https://watchashfly.tina.cafe/preview.webp' }
+      { hid: 'og:image', name: 'og:image', property: 'og:image', content: 'https://watchashfly.tina.cafe/preview.jpg' },
+      { hid: 'og:image:width', name: 'og:image:width', property: 'og:image:width', content: '1200' },
+      { hid: 'og:image:height', name: 'og:image:height', property: 'og:image:height', content: '600' }
     ],
     htmlAttrs: {
       lang: 'en'
