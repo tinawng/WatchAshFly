@@ -1,16 +1,16 @@
 <template>
   <div class="page__container">
     <section class="ash_price">
-      <div class="text-9xl font-semibold overflow-hidden">
+      <div class="section__title overflow-hidden">
         $<span ref="ash-price">{{ash_price.toFixed(3)}}</span>
       </div>
       <h1>Watch the ASH fly</h1>
     </section>
 
-    <section class="one">
+    <section id="ash-rate" class="ash_rate">
       <div class="text-left">
         <div class="overflow-hidden">
-          <span ref="ash-rate" class="text-9xl font-semibold">
+          <span ref="ash-rate" class="section__title">
             <span class="opacity-0">{{ash_rate.toFixed(3)}}</span>
           </span>
         </div>
@@ -35,7 +35,7 @@
       <card-carousel :cubes="cubes_stats"></card-carousel>
       <div class="text-right">
         <div class="overflow-hidden">
-          <span ref="total-ash" class="text-9xl font-semibold">
+          <span ref="total-ash" class="section__title">
             <span class="opacity-0">{{numberWithCommas(Math.round(total_ash))}}</span>
           </span>
         </div>
@@ -43,7 +43,7 @@
       </div>
     </section>
 
-    <section class="marketplaces">
+    <section id="get-ash" class="marketplaces">
       <div>
         <h1 class="font-semibold" style="text-align: center">Get</h1>
         <h1 class="highlight" style="text-align: center">$ASH</h1>
@@ -72,8 +72,8 @@
           <li class="card__title">Gemini</li>
           <li class="card__desc">Price floor</li>
           <li>
-            <span class="text-2xl">${{49.90.toFixed(2)}}</span>
-            <span class="tracking-wide opacity-40">&nbsp;/ {{(49.90 / eth_price).toFixed(4)}}</span>
+            <span class="text-2xl">${{39.40.toFixed(2)}}</span>
+            <span class="tracking-wide opacity-40">&nbsp;/ {{(39.40 / eth_price).toFixed(4)}}</span>
             <span class="opacity-40">♦</span>
           </li>
         </ol>
@@ -320,8 +320,7 @@ export default {
 
 <style lang="postcss">
 section.ash_price {
-  height: 100vh;
-  @apply max-w-7xl;
+  @apply h-96 md:h-screen max-w-7xl;
   @apply mx-auto;
   @apply pl-12;
   @apply flex flex-col justify-center text-left;
@@ -329,7 +328,7 @@ section.ash_price {
 #slide-number {
   @apply inline-block;
 }
-section.one {
+section.ash_rate {
   @apply w-full max-w-6xl;
   @apply mx-auto;
   @apply grid items-center;
@@ -337,13 +336,13 @@ section.one {
 }
 section.two {
   @apply w-full max-w-6xl;
-  @apply mt-40 mx-auto;
+  @apply pt-40 mx-auto;
   @apply grid items-center;
   grid-template-columns: 1fr 2fr;
 }
 section.marketplaces {
   @apply w-full max-w-6xl;
-  @apply mt-40 mx-auto;
+  @apply pt-40 mx-auto;
   /* @apply grid items-center gap-12;
   grid-template-columns: repeat(3, auto); */
   @apply flex justify-between items-center;
@@ -358,8 +357,8 @@ section.credits {
   @apply mt-16;
   @apply text-center;
 }
-/* 💫 Animations */
 
+/* 💫 Animations */
 .highlight {
   color: transparent;
   @apply bg-clip-text;

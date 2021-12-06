@@ -48,9 +48,7 @@ export default {
 <style lang="postcss" scoped>
 .card__container {
   @apply relative z-50;
-  /* @apply h-96 w-64; */
-  height: 30rem;
-  width: 20rem;
+  @apply md:h-120 md:w-80;
   @apply rounded-2xl;
   @apply grid;
   grid-template-rows: 2fr 1fr;
@@ -70,10 +68,10 @@ export default {
 }
 .card__title {
   @apply mb-3;
-  @apply text-2xl;
+  @apply md:text-2xl;
 }
 .card__desc {
-  @apply text-base tracking-normal opacity-30;
+  @apply md:text-base tracking-normal opacity-30;
 }
 .card__dark .card__desc {
   @apply font-semibold;

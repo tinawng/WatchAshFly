@@ -19,12 +19,23 @@ body::after{
   @apply absolute top-0 left-0 z-30;
   @apply h-full w-full;
   background-image: url("/img/noise.png");
-  @apply opacity-40;
+  @apply opacity-20 md:opacity-40;
   @apply pointer-events-none;
 }
 
+.section__title {
+  @apply text-7xl md:text-9xl ;
+  @apply font-semibold;
+}
 h1 {
-  @apply text-8xl tracking-tighter;
+  @apply text-4xl md:text-8xl;
+  @apply tracking-tighter;
+}
+h4 {
+
+}
+h5 {
+
 }
 
 a:not(.button) {
