@@ -16,9 +16,11 @@ export default {
       { hid: 'og:site_name', name: 'og:site_name', property: 'og:site_name', content: 'Watch Ash Fly' },
       { hid: 'og:description', name: 'og:description', property: 'og:description', content: '$ASH and Fungibles stats' },
       { hid: 'og:url', name: 'og:url', property: 'og:url', content: 'https://watchashfly.tina.cafe/' },
+      { hid: 'twitter:card', name: 'twitter:card', property: 'twitter:card', content: 'summary_large_image' },
+      { hid: 'twitter:image', name: 'twitter:image', property: 'twitter:image', content: 'https://watchashfly.tina.cafe/preview.jpg' },
       { hid: 'og:image', name: 'og:image', property: 'og:image', content: 'https://watchashfly.tina.cafe/preview.jpg' },
       { hid: 'og:image:width', name: 'og:image:width', property: 'og:image:width', content: '1200' },
-      { hid: 'og:image:height', name: 'og:image:height', property: 'og:image:height', content: '600' }
+      { hid: 'og:image:height', name: 'og:image:height', property: 'og:image:height', content: '630' }
     ],
     htmlAttrs: {
       lang: 'en'
