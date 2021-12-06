@@ -51,7 +51,7 @@
       <card
         style="background: linear-gradient(-135deg, #FF007A 0%, #FF6EBA 100%);"
         img="uniswap.svg"
-        link="https://v2.info.uniswap.org/token/0x64d91f12ece7362f91a6f8e7940cd55f05060b92"
+        link="https://info.uniswap.org/#/tokens/0x64d91f12ece7362f91a6f8e7940cd55f05060b92"
       >
         <ol>
           <li class="card__title">Uniswap</li>
