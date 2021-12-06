@@ -39,14 +39,14 @@
             <span class="opacity-0">{{numberWithCommas(Math.round(total_ash))}}</span>
           </span>
         </div>
-        <h1 class="mt-1">ASH total</h1>
+        <h1 class="mt-1">total ASH</h1>
       </div>
     </section>
 
     <section class="marketplaces">
       <div>
         <h1 class="font-semibold" style="text-align: center">Get</h1>
-        <h1 style="text-align: center">$ASH</h1>
+        <h1 class="highlight" style="text-align: center">$ASH</h1>
       </div>
       <card
         style="background: linear-gradient(-135deg, #FF007A 0%, #FF6EBA 100%);"
@@ -358,8 +358,23 @@ section.credits {
   @apply mt-16;
   @apply text-center;
 }
-
 /* 💫 Animations */
+
+.highlight {
+  color: transparent;
+  @apply bg-clip-text;
+  background-image: linear-gradient(45deg,#aa85ff,#ffc39b);
+  animation: hue-rotation 1.2s linear infinite;
+}
+@keyframes hue-rotation {
+  from {
+    filter: hue-rotate(0deg);
+  }
+  to {
+    filter: hue-rotate(1turn);
+  }
+}
+
 .invoke {
   animation: invoke 0.6s ease-in-out forwards;
 }
