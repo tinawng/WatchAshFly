@@ -7,7 +7,7 @@
     <div class="card__slot_container">
       <slot />
     </div>
-    <a v-if="link" class="absolute -bottom-5 left-24 button" :class="{'dark': burning || dark}" :href="link">
+    <a v-if="link" class="absolute -bottom-5 left-18 md:left-24 button" :class="{'dark': burning || dark}" :href="link">
       <span v-if="burning" class="tracking-wide">Burn</span>
       <span v-else>Collect</span>
     </a>
@@ -28,10 +28,10 @@ export default {
 
       var speed = this.mapRange(Math.random(), 5, 9);
       var delay = this.mapRange(Math.random(), 0, 5);
-      var x_pos = this.mapRange(Math.random(), 0.8, 19.2);
+      var x_pos = this.mapRange(Math.random(), 20, el.clientWidth-20);
       var rot = this.mapRange(Math.random(), 0, 540);
 
-      s.style.cssText = `--speed: ${speed}s; --delay: ${delay}s; --x-pos: ${x_pos}rem; --rot: ${rot}deg`;
+      s.style.cssText = `--speed: ${speed}s; --delay: ${delay}s; --x-pos: ${x_pos}px; --rot: ${rot}deg`;
 
       el.appendChild(s);
     }
@@ -48,7 +48,7 @@ export default {
 <style lang="postcss" scoped>
 .card__container {
   @apply relative z-50;
-  @apply md:h-120 md:w-80;
+  @apply h-88 w-60 md:h-120 md:w-80;
   @apply rounded-2xl;
   @apply grid;
   grid-template-rows: 2fr 1fr;
@@ -67,11 +67,11 @@ export default {
   @apply bg-dark rounded-b-2xl text-white;
 }
 .card__title {
-  @apply mb-3;
+  @apply mb-1 md:mb-3;
   @apply md:text-2xl;
 }
 .card__desc {
-  @apply md:text-base tracking-normal opacity-30;
+  @apply text-xs md:text-base tracking-normal opacity-30;
 }
 .card__dark .card__desc {
   @apply font-semibold;
@@ -85,7 +85,8 @@ export default {
 <style lang="postcss">
 .burn_icon {
   @apply absolute top-3 -z-1;
-  @apply h-3 w-3;
+  @apply h-2 w-2 md:h-3 md:w-3;
+  @apply opacity-60 md:opacity-100;
   left: var(--x-pos);
   will-change: transform;
 

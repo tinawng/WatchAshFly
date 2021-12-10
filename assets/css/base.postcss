@@ -31,29 +31,21 @@ h1 {
   @apply text-4xl md:text-8xl;
   @apply tracking-tighter;
 }
-h4 {
-
-}
-h5 {
-
-}
 
 a:not(.button) {
   @apply underline;
 }
 a.button {
-  @apply h-12 w-32;
+  @apply h-10 w-24 md:h-12 md:w-32;
 }
 button {
-  @apply h-12 w-12;
+  @apply h-10 w-10 md:h-12 md:w-12;
   @apply flex justify-center items-center;
 }
 a.button, button {
   @apply z-50;
   @apply bg-white rounded-full shadow-lg;
-  @apply text-lg text-center;
-  line-height: 3rem;
-  @apply font-bold;
+  @apply md:text-lg font-bold leading-10 md:leading-12 text-center;
   @apply transition-all;
   transition-property: transform shadow;
 }

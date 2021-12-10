@@ -43,10 +43,10 @@
       </div>
     </section>
 
-    <section id="get-ash" class="marketplaces">
-      <div>
-        <h1 class="font-semibold" style="text-align: center">Get</h1>
-        <h1 class="highlight" style="text-align: center">$ASH</h1>
+    <section id="get-ash" class="ash-marketplaces">
+      <div class="text-center text-8xl tracking-tighter">
+        <p class="font-semibold">Get</p>
+        <p class="highlight">$ASH</p>
       </div>
       <card
         style="background: linear-gradient(-135deg, #FF007A 0%, #FF6EBA 100%);"
@@ -57,7 +57,7 @@
           <li class="card__title">Uniswap</li>
           <li class="card__desc">Price floor</li>
           <li>
-            <span class="text-2xl">${{ash_price.toFixed(3)}}</span>
+            <span class="text-xl md:text-2xl">${{ash_price.toFixed(3)}}</span>
             <span class="tracking-wide opacity-40">&nbsp;/ {{(ash_price / eth_price).toFixed(4)}}</span>
             <span class="opacity-40">♦</span>
           </li>
@@ -72,17 +72,18 @@
           <li class="card__title">Gemini</li>
           <li class="card__desc">Price floor</li>
           <li>
-            <span class="text-2xl">${{39.40.toFixed(2)}}</span>
+            <span class="text-xl md:text-2xl">${{39.40.toFixed(2)}}</span>
             <span class="tracking-wide opacity-40">&nbsp;/ {{(39.40 / eth_price).toFixed(4)}}</span>
             <span class="opacity-40">♦</span>
           </li>
         </ol>
       </card>
     </section>
-    <section class="marketplaces flex-row-reverse">
-      <div>
-        <h1 class="font-semibold" style="text-align: center">"A Cube"</h1>
-        <h1 style="text-align: center">floor</h1>
+
+    <section id="get-cube" class="cube-marketplaces">
+      <div class="text-center text-6xl md:text-8xl tracking-tighter">
+        <p class="font-semibold">"A Cube"</p>
+        <p>floor</p>
       </div>
       <card
         style="background: linear-gradient(135deg, #00FABA 0%, #00D8FF 100%);"
@@ -93,7 +94,7 @@
           <li class="card__title">Nifty Gateway</li>
           <li class="card__desc">Cube floor</li>
           <li>
-            <span class="text-2xl">${{numberWithCommas(Math.round(nifty_floor.usd))}}</span>
+            <span class="text-xl md:text-2xl">${{numberWithCommas(Math.round(nifty_floor.usd))}}</span>
             <span class="tracking-wide opacity-40">&nbsp;/ {{nifty_floor.eth.toFixed(2)}}</span>
             <span class="opacity-40">♦</span>
           </li>
@@ -108,7 +109,7 @@
           <li class="card__title">Opensea Gateway</li>
           <li class="card__desc">Cube floor</li>
           <li>
-            <span class="text-2xl">${{numberWithCommas(Math.round(opensea_floor.usd))}}</span>
+            <span class="text-xl md:text-2xl">${{numberWithCommas(Math.round(opensea_floor.usd))}}</span>
             <span class="tracking-wide opacity-40">&nbsp;/ {{opensea_floor.eth.toFixed(2)}}</span>
             <span class="opacity-40">♦</span>
           </li>
@@ -117,11 +118,11 @@
     </section>
 
     <section class="pak">
-      <icon ref="pak" class="w-1/3 opacity-0" variant="pak" />
+      <icon ref="pak" class="w-2/3 md:w-1/3 opacity-0" variant="pak" />
     </section>
 
     <section class="credits">
-      <p><b>Buy me </b><span class="text-l">☕</span></p>
+      <p><b>Buy me </b><span>☕</span></p>
       <p><b>0xC958c2B65E9840F76E34EE660e27cCf254d75Fa4</b></p>
       <p>Base on <a href="https://watchcubesburn.art/">watchcubesburn.art</a> by [secondstate]</p>
     </section>
@@ -320,7 +321,7 @@ export default {
 
 <style lang="postcss">
 section.ash_price {
-  @apply h-96 md:h-screen max-w-7xl;
+  @apply h-120 md:h-screen max-w-7xl;
   @apply mx-auto;
   @apply pl-12;
   @apply flex flex-col justify-center text-left;
@@ -331,38 +332,42 @@ section.ash_price {
 section.ash_rate {
   @apply w-full max-w-6xl;
   @apply mx-auto;
-  @apply grid items-center;
+  @apply flex flex-col-reverse items-center gap-y-16;
+  @apply md:grid;
   grid-template-columns: 2fr 1fr;
 }
 section.two {
   @apply w-full max-w-6xl;
   @apply pt-40 mx-auto;
-  @apply grid items-center;
+  @apply flex flex-col items-center gap-y-10;
+  @apply md:grid;
   grid-template-columns: 1fr 2fr;
 }
-section.marketplaces {
+section.ash-marketplaces {
   @apply w-full max-w-6xl;
   @apply pt-40 mx-auto;
-  /* @apply grid items-center gap-12;
-  grid-template-columns: repeat(3, auto); */
-  @apply flex justify-between items-center;
-  @apply bg-white;
+  @apply flex flex-col md:flex-row justify-between items-center gap-y-20;
+}
+section.cube-marketplaces {
+  @apply w-full max-w-6xl;
+  @apply pt-40 mx-auto;
+  @apply flex flex-col md:flex-row-reverse justify-between items-center gap-y-14;
 }
 section.pak {
-  @apply mt-40;
+  @apply mt-20 md:mt-40;
   @apply flex justify-center;
 }
 section.credits {
   @apply h-32 w-full;
   @apply mt-16;
-  @apply text-center;
+  @apply text-sm md:text-base text-center;
 }
 
 /* 💫 Animations */
 .highlight {
-  color: transparent;
+  @apply text-transparent;
   @apply bg-clip-text;
-  background-image: linear-gradient(45deg,#aa85ff,#ffc39b);
+  background-image: linear-gradient(45deg, #aa85ff, #ffc39b);
   animation: hue-rotation 1.2s linear infinite;
 }
 @keyframes hue-rotation {
