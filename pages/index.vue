@@ -124,7 +124,7 @@
     <section class="credits">
       <p><b>Buy me </b><span>☕</span></p>
       <p><b>0xC958c2B65E9840F76E34EE660e27cCf254d75Fa4</b></p>
-      <p>Base on <a href="https://watchcubesburn.art/">watchcubesburn.art</a> by [secondstate]</p>
+      <p>Based on <a href="https://watchcubesburn.art/">watchcubesburn.art</a> by [secondstate]</p>
     </section>
   </div>
 </template>
