@@ -170,7 +170,7 @@ export default {
   },
   data: () => ({
     eth_price: 4241.755785657359203069158769979819,
-    ash_price: 47.139,
+    ash_price: 00.000,
 
     nifty_floor: { usd: 39000, eth: 9.18 },
     opensea_floor: { usd: 37389, eth: 8.8 },
