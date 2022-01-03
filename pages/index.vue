@@ -135,28 +135,30 @@ export default {
   mixins: [intersection_helper],
 
   async fetch() {
-    let data = (await this.$http.$post("/", process.env.DATA_API + "/ashStats")).data;
+    let data = (await this.$http.$post("/", `https://uniswap.${process.env.DATA_API}/`)).data;
     this.eth_price = 4241.755785657359203069158769979819;
     this.eth_price = parseFloat(data.bundle.ethPriceUSD);
     this.ash_price = this.eth_price * parseFloat(data.token.derivedETH);
     // this.setAshPrice(this.eth_price * parseFloat(data.token.derivedETH));
 
     // Market Stats
-    data = await this.$http.$post("/", process.env.DATA_API + "/niftyfloorStats");
+    data = await this.$http.$post("/", `https://niftyfloor.${process.env.DATA_API}/`);
     this.nifty_floor = {
       usd: data.price_in_cents / 100,
       eth: data.price_in_cents / 100 / this.eth_price,
     };
-    data = await this.$http.$post("/", process.env.DATA_API + "/osfloorStats");
+    data = await this.$http.$post("/", `https://osfloor.${process.env.DATA_API}/`);
     this.opensea_floor = { usd: data.floor_price * this.eth_price, eth: data.floor_price };
 
     // ASH stats
-    data = await this.$http.$post("/", process.env.DATA_API + "/ashLiquidityStats");
-    this.total_ash = data.totalSupply / 10e17;
+    data = await this.$http.$post("/", `https://ashliquidity.${process.env.DATA_API}/`);
+    this.total_ash = Number(data.totalSupply) / 10e17;
+    console.log(this.total_ash);
     this.ash_rate = 1e3 * Math.pow(0.5, this.total_ash / 5e6);
+    console.log(this.ash_rate);
 
     // Cubes stats
-    data = await this.$http.$post("/", process.env.DATA_API + "/fungibleStats");
+    data = await this.$http.$post("/", `https://fungible.${process.env.DATA_API}/`);
     this.total_cube = data.FungibleTotal;
     this.burnt_cubes = data.TotalCubesBurned;
     Object.assign(this.cubes_stats[0], { burnt: data.ACubeBurned, left: data.ACubeLeft });
@@ -170,7 +172,7 @@ export default {
   },
   data: () => ({
     eth_price: 4241.755785657359203069158769979819,
-    ash_price: 00.000,
+    ash_price: 0,
 
     nifty_floor: { usd: 39000, eth: 9.18 },
     opensea_floor: { usd: 37389, eth: 8.8 },
@@ -236,11 +238,11 @@ export default {
   watch: {
     ash_price: function (new_value) {
       this.rollOutNumbers(new_value);
-    },
+    }
   },
 
   created() {
-    //TODO: setTimeout(this.fetch)
+    //TODO: setTimeout(this.$fetch)
   },
 
   mounted() {
@@ -266,6 +268,7 @@ export default {
       },
       0.6
     );
+    
     // 💫 Animation trigger for Ash rate
     this.intersectionTrigger(
       this.$refs["ash-rate"],
