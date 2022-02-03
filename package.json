@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "nuxt",
     "generate": "nuxt generate --modern",
-    "deploy": "scp -r ./dist siyu:/home/pi/work/static-servers/watchashfly && ssh siyu \"(cd /home/pi/work/static-servers/watchashfly && yarn compress && pm2 restart 'watchashfly')\""
+    "deploy": "ssh siyu \"(cd /home/pi/work/static-servers/watchashfly && rm -rf dist/)\" && scp -r ./dist siyu:/home/pi/work/static-servers/watchashfly && ssh siyu \"(cd /home/pi/work/static-servers/watchashfly && yarn compress && pm2 restart 'watchashfly')\""
   },
   "dependencies": {},
   "devDependencies": {
