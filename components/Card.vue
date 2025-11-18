@@ -7,7 +7,7 @@
     <div class="card__slot_container">
       <slot />
     </div>
-    <a v-if="link" class="absolute -bottom-5 left-18 md:left-24 button" :class="{'dark': burning || dark}" :href="link">
+    <a v-if="link" class="absolute -bottom-5 left-18 md:left-24 button" :class="{'dark': burning || dark}" :href="link" target="_blank">
       <span v-if="burning" class="tracking-wide">Burn</span>
       <span v-else>Collect</span>
     </a>
@@ -22,14 +22,14 @@ export default {
     if (!this.burning) return;
     let el = this.$refs["card"];
     for (let i = 0; i < 82; i++) {
-      var s = document.createElement("img");
+      let s = document.createElement("img");
       s.setAttribute("src", "/img/burn.svg");
       s.classList.add("burn_icon");
 
-      var speed = this.mapRange(Math.random(), 5, 9);
-      var delay = this.mapRange(Math.random(), 0, 5);
-      var x_pos = this.mapRange(Math.random(), 20, el.clientWidth-20);
-      var rot = this.mapRange(Math.random(), 0, 540);
+      let speed = this.mapRange(Math.random(), 5, 9);
+      let delay = this.mapRange(Math.random(), 0, 5);
+      let x_pos = this.mapRange(Math.random(), 20, el.clientWidth-20);
+      let rot = this.mapRange(Math.random(), 0, 540);
 
       s.style.cssText = `--speed: ${speed}s; --delay: ${delay}s; --x-pos: ${x_pos}px; --rot: ${rot}deg`;
 

@@ -46,8 +46,10 @@ export default {
 }
 .carousell__button_next {
   @apply absolute top-32 -right-6 md:top-48 md:-right-8;
+  @apply border border-black border-opacity-15;
 }
 .carousell__button_previous {
   @apply absolute top-32 -left-6 md:top-48 md:-left-8;
+  @apply border border-black border-opacity-15;
 }
 </style>

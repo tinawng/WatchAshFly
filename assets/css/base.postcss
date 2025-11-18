@@ -14,7 +14,7 @@ html {
 body {
   @apply relative;
 }
-body::after{
+body::after {
   content: "";
   @apply absolute top-0 left-0 z-30;
   @apply h-full w-full;
@@ -24,7 +24,7 @@ body::after{
 }
 
 .section__title {
-  @apply text-7xl md:text-9xl ;
+  @apply text-7xl md:text-9xl;
   @apply font-semibold;
 }
 h1 {
@@ -42,18 +42,21 @@ button {
   @apply h-10 w-10 md:h-12 md:w-12;
   @apply flex justify-center items-center;
 }
-a.button, button {
+a.button,
+button {
   @apply z-50;
   @apply bg-white rounded-full shadow-lg;
   @apply md:text-lg font-bold leading-10 md:leading-12 text-center;
   @apply transition-all;
   transition-property: transform shadow;
 }
-a.button:hover, button:hover {
+a.button:hover,
+button:hover {
   @apply transform -translate-y-1;
   @apply shadow-xl;
 }
-a.button:active, button:active {
+a.button:active,
+button:active {
   @apply transform translate-y-0;
   @apply shadow;
 }
@@ -61,35 +64,34 @@ a.button.dark {
   @apply bg-dark text-white shadow-xl;
 }
 
-.fade-enter-active, .fade-leave-active {
-  transition: all .4s;
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.4s;
 }
-.fade-enter, .fade-leave-to{
+.fade-enter,
+.fade-leave-to {
   opacity: 0.1;
   filter: blur(5px);
 }
 
 @font-face {
-  font-family: 'Graphik';
+  font-family: "Graphik";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: local(''),
-       url('../../static/fonts/graphik/GraphikRegular.woff2') format('woff2');
+  src: local(""), url("@/assets/fonts/graphik/GraphikRegular.woff2") format("woff2");
 }
 @font-face {
-  font-family: 'Graphik';
+  font-family: "Graphik";
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: local(''),
-       url('../../static/fonts/graphik/GraphikSemiBold.woff2') format('woff2');
+  src: local(""), url("@/assets/fonts/graphik/GraphikSemiBold.woff2") format("woff2");
 }
 @font-face {
-  font-family: 'Graphik';
+  font-family: "Graphik";
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: local(''),
-       url('../../static/fonts/graphik/GraphikBold.woff2') format('woff2');
+  src: local(""), url("@/assets/fonts/graphik/GraphikBold.woff2") format("woff2");
 }

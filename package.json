@@ -1,18 +1,14 @@
 {
-  "name": "template",
+  "name": "watch-ash-fly",
   "version": "1.0.0",
-  "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "nuxt",
-    "generate": "nuxt generate --modern",
-    "deploy": "ssh siyu \"(cd /home/pi/work/static-servers/watchashfly && rm -rf dist/)\" && scp -r ./dist siyu:/home/pi/work/static-servers/watchashfly && ssh siyu \"(cd /home/pi/work/static-servers/watchashfly && yarn compress && pm2 restart 'watchashfly')\""
+    "dev": "nuxt dev",
+    "generate": "nuxt generate"
   },
-  "dependencies": {},
-  "devDependencies": {
-    "nuxt": "latest",
-    "postcss": "latest",
-    "@nuxtjs/tailwindcss": "latest",
-    "@nuxtjs/dotenv": "latest",
-    "@nuxt/http": "latest"
+  "dependencies": {
+    "@nuxtjs/tailwindcss": "^6.14.0",
+    "@vueuse/core": "^14.0.0",
+    "nuxt": "^4.2.0"
   }
 }
