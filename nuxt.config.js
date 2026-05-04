@@ -1,4 +1,16 @@
 export default defineNuxtConfig({
+   nitro: {
+    compressPublicAssets: true,
+    prerender: { ignore: ["/200.html"] },
+  },
+
+  vite: {
+    build: {
+      cssCodeSplit: false,
+      rollupOptions: { output: { inlineDynamicImports: true } },
+    },
+  },
+  
   app: {
     head: {
       title: "Watch Ash Fly",
